@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.hypothesis/
+
+# Base model weights: download from Hugging Face (see README)
+models/
+
+# Raw KodCode download: recreate with the command in README
+data/raw/
+
+# Run outputs that are too large for git. Adapters, training logs and sampled
+# training answers are on Hugging Face (see README); results stay in git.
+runs/**/checkpoint-*/
+runs/**/final/
+runs/**/completions/
+runs/**/*.log
+runs/*/*/README.md
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/

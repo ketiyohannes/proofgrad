@@ -1,0 +1,21 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "problems": "data/problems.jsonl",
+  "reward": "spec",
+  "monitor": "True",
+  "output_dir": "runs/smoke/grpo",
+  "max_steps": "3",
+  "num_generations": "4",
+  "batch_size": "2",
+  "grad_accum": "2",
+  "lr": "1e-05",
+  "beta": "0.0",
+  "temperature": "1.0",
+  "max_completion_length": "256",
+  "lora_r": "16",
+  "load_in_4bit": "False",
+  "use_vllm": "False",
+  "save_steps": "1000",
+  "report_to": "none",
+  "seed": "0"
+}

@@ -1,0 +1,401 @@
+{
+  "train": {
+    "problems": 20,
+    "arms": {
+      "base": {
+        "answers": 160,
+        "judge_pass_rate": 0.406,
+        "thin_pass_rate": 0.494,
+        "subtly_wrong_rate": 0.087,
+        "thin_accepted_that_are_wrong": 0.177
+      },
+      "spec": {
+        "answers": 160,
+        "judge_pass_rate": 0.794,
+        "thin_pass_rate": 0.85,
+        "subtly_wrong_rate": 0.056,
+        "thin_accepted_that_are_wrong": 0.066
+      },
+      "sft_code": {
+        "answers": 160,
+        "judge_pass_rate": 0.438,
+        "thin_pass_rate": 0.6,
+        "subtly_wrong_rate": 0.163,
+        "thin_accepted_that_are_wrong": 0.271
+      },
+      "sft_props": {
+        "answers": 160,
+        "judge_pass_rate": 0.319,
+        "thin_pass_rate": 0.412,
+        "subtly_wrong_rate": 0.094,
+        "thin_accepted_that_are_wrong": 0.227
+      },
+      "grpo_code": {
+        "answers": 160,
+        "judge_pass_rate": 0.8,
+        "thin_pass_rate": 0.838,
+        "subtly_wrong_rate": 0.037,
+        "thin_accepted_that_are_wrong": 0.045
+      },
+      "grpo_props": {
+        "answers": 160,
+        "judge_pass_rate": 0.738,
+        "thin_pass_rate": 0.838,
+        "subtly_wrong_rate": 0.1,
+        "thin_accepted_that_are_wrong": 0.119
+      }
+    },
+    "differences": {
+      "sft_props_minus_sft_code:judge_pass_rate": {
+        "value": -0.119,
+        "ci": [
+          -0.225,
+          -0.019
+        ]
+      },
+      "sft_props_minus_sft_code:subtly_wrong_rate": {
+        "value": -0.069,
+        "ci": [
+          -0.156,
+          0.0
+        ]
+      },
+      "grpo_props_minus_grpo_code:judge_pass_rate": {
+        "value": -0.062,
+        "ci": [
+          -0.213,
+          0.106
+        ]
+      },
+      "grpo_props_minus_grpo_code:subtly_wrong_rate": {
+        "value": 0.062,
+        "ci": [
+          -0.019,
+          0.138
+        ]
+      },
+      "grpo_props_minus_sft_props:judge_pass_rate": {
+        "value": 0.419,
+        "ci": [
+          0.3,
+          0.537
+        ]
+      },
+      "grpo_props_minus_sft_props:subtly_wrong_rate": {
+        "value": 0.006,
+        "ci": [
+          -0.081,
+          0.106
+        ]
+      },
+      "grpo_code_minus_sft_code:judge_pass_rate": {
+        "value": 0.363,
+        "ci": [
+          0.219,
+          0.512
+        ]
+      },
+      "grpo_code_minus_sft_code:subtly_wrong_rate": {
+        "value": -0.125,
+        "ci": [
+          -0.206,
+          -0.05
+        ]
+      },
+      "sft_code_minus_base:judge_pass_rate": {
+        "value": 0.031,
+        "ci": [
+          -0.062,
+          0.131
+        ]
+      },
+      "sft_code_minus_base:subtly_wrong_rate": {
+        "value": 0.075,
+        "ci": [
+          0.012,
+          0.144
+        ]
+      },
+      "grpo_code_minus_spec:judge_pass_rate": {
+        "value": 0.006,
+        "ci": [
+          -0.144,
+          0.15
+        ]
+      },
+      "grpo_code_minus_spec:subtly_wrong_rate": {
+        "value": -0.019,
+        "ci": [
+          -0.081,
+          0.062
+        ]
+      }
+    }
+  },
+  "test": {
+    "problems": 18,
+    "arms": {
+      "base": {
+        "answers": 144,
+        "judge_pass_rate": 0.41,
+        "thin_pass_rate": 0.562,
+        "subtly_wrong_rate": 0.153,
+        "thin_accepted_that_are_wrong": 0.272
+      },
+      "spec": {
+        "answers": 144,
+        "judge_pass_rate": 0.722,
+        "thin_pass_rate": 0.785,
+        "subtly_wrong_rate": 0.062,
+        "thin_accepted_that_are_wrong": 0.08
+      },
+      "sft_code": {
+        "answers": 144,
+        "judge_pass_rate": 0.493,
+        "thin_pass_rate": 0.583,
+        "subtly_wrong_rate": 0.09,
+        "thin_accepted_that_are_wrong": 0.155
+      },
+      "sft_props": {
+        "answers": 144,
+        "judge_pass_rate": 0.465,
+        "thin_pass_rate": 0.556,
+        "subtly_wrong_rate": 0.09,
+        "thin_accepted_that_are_wrong": 0.163
+      },
+      "grpo_code": {
+        "answers": 144,
+        "judge_pass_rate": 0.472,
+        "thin_pass_rate": 0.569,
+        "subtly_wrong_rate": 0.097,
+        "thin_accepted_that_are_wrong": 0.171
+      },
+      "grpo_props": {
+        "answers": 144,
+        "judge_pass_rate": 0.688,
+        "thin_pass_rate": 0.785,
+        "subtly_wrong_rate": 0.097,
+        "thin_accepted_that_are_wrong": 0.124
+      }
+    },
+    "differences": {
+      "sft_props_minus_sft_code:judge_pass_rate": {
+        "value": -0.028,
+        "ci": [
+          -0.16,
+          0.118
+        ]
+      },
+      "sft_props_minus_sft_code:subtly_wrong_rate": {
+        "value": 0.0,
+        "ci": [
+          -0.062,
+          0.056
+        ]
+      },
+      "grpo_props_minus_grpo_code:judge_pass_rate": {
+        "value": 0.215,
+        "ci": [
+          0.076,
+          0.354
+        ]
+      },
+      "grpo_props_minus_grpo_code:subtly_wrong_rate": {
+        "value": 0.0,
+        "ci": [
+          -0.083,
+          0.076
+        ]
+      },
+      "grpo_props_minus_sft_props:judge_pass_rate": {
+        "value": 0.222,
+        "ci": [
+          0.104,
+          0.347
+        ]
+      },
+      "grpo_props_minus_sft_props:subtly_wrong_rate": {
+        "value": 0.007,
+        "ci": [
+          -0.049,
+          0.062
+        ]
+      },
+      "grpo_code_minus_sft_code:judge_pass_rate": {
+        "value": -0.021,
+        "ci": [
+          -0.125,
+          0.069
+        ]
+      },
+      "grpo_code_minus_sft_code:subtly_wrong_rate": {
+        "value": 0.007,
+        "ci": [
+          -0.069,
+          0.09
+        ]
+      },
+      "sft_code_minus_base:judge_pass_rate": {
+        "value": 0.083,
+        "ci": [
+          -0.056,
+          0.222
+        ]
+      },
+      "sft_code_minus_base:subtly_wrong_rate": {
+        "value": -0.063,
+        "ci": [
+          -0.132,
+          0.007
+        ]
+      },
+      "grpo_code_minus_spec:judge_pass_rate": {
+        "value": -0.25,
+        "ci": [
+          -0.41,
+          -0.111
+        ]
+      },
+      "grpo_code_minus_spec:subtly_wrong_rate": {
+        "value": 0.035,
+        "ci": [
+          -0.035,
+          0.104
+        ]
+      }
+    }
+  },
+  "all": {
+    "problems": 38,
+    "arms": {
+      "base": {
+        "answers": 304,
+        "judge_pass_rate": 0.408,
+        "thin_pass_rate": 0.526,
+        "subtly_wrong_rate": 0.118,
+        "thin_accepted_that_are_wrong": 0.225
+      },
+      "spec": {
+        "answers": 304,
+        "judge_pass_rate": 0.76,
+        "thin_pass_rate": 0.819,
+        "subtly_wrong_rate": 0.059,
+        "thin_accepted_that_are_wrong": 0.072
+      },
+      "sft_code": {
+        "answers": 304,
+        "judge_pass_rate": 0.464,
+        "thin_pass_rate": 0.592,
+        "subtly_wrong_rate": 0.128,
+        "thin_accepted_that_are_wrong": 0.217
+      },
+      "sft_props": {
+        "answers": 304,
+        "judge_pass_rate": 0.388,
+        "thin_pass_rate": 0.48,
+        "subtly_wrong_rate": 0.092,
+        "thin_accepted_that_are_wrong": 0.192
+      },
+      "grpo_code": {
+        "answers": 304,
+        "judge_pass_rate": 0.645,
+        "thin_pass_rate": 0.711,
+        "subtly_wrong_rate": 0.066,
+        "thin_accepted_that_are_wrong": 0.093
+      },
+      "grpo_props": {
+        "answers": 304,
+        "judge_pass_rate": 0.714,
+        "thin_pass_rate": 0.812,
+        "subtly_wrong_rate": 0.099,
+        "thin_accepted_that_are_wrong": 0.121
+      }
+    },
+    "differences": {
+      "sft_props_minus_sft_code:judge_pass_rate": {
+        "value": -0.076,
+        "ci": [
+          -0.155,
+          0.013
+        ]
+      },
+      "sft_props_minus_sft_code:subtly_wrong_rate": {
+        "value": -0.036,
+        "ci": [
+          -0.092,
+          0.01
+        ]
+      },
+      "grpo_props_minus_grpo_code:judge_pass_rate": {
+        "value": 0.069,
+        "ci": [
+          -0.043,
+          0.184
+        ]
+      },
+      "grpo_props_minus_grpo_code:subtly_wrong_rate": {
+        "value": 0.033,
+        "ci": [
+          -0.026,
+          0.086
+        ]
+      },
+      "grpo_props_minus_sft_props:judge_pass_rate": {
+        "value": 0.326,
+        "ci": [
+          0.237,
+          0.418
+        ]
+      },
+      "grpo_props_minus_sft_props:subtly_wrong_rate": {
+        "value": 0.007,
+        "ci": [
+          -0.046,
+          0.062
+        ]
+      },
+      "grpo_code_minus_sft_code:judge_pass_rate": {
+        "value": 0.181,
+        "ci": [
+          0.076,
+          0.286
+        ]
+      },
+      "grpo_code_minus_sft_code:subtly_wrong_rate": {
+        "value": -0.063,
+        "ci": [
+          -0.125,
+          0.0
+        ]
+      },
+      "sft_code_minus_base:judge_pass_rate": {
+        "value": 0.056,
+        "ci": [
+          -0.03,
+          0.138
+        ]
+      },
+      "sft_code_minus_base:subtly_wrong_rate": {
+        "value": 0.01,
+        "ci": [
+          -0.043,
+          0.062
+        ]
+      },
+      "grpo_code_minus_spec:judge_pass_rate": {
+        "value": -0.115,
+        "ci": [
+          -0.23,
+          -0.007
+        ]
+      },
+      "grpo_code_minus_spec:subtly_wrong_rate": {
+        "value": 0.007,
+        "ci": [
+          -0.043,
+          0.056
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"id": "kodcode/Apps_5370_I", "reason": "excluded by spec writer: The reference solution (a sliding window) contradicts the statement on arrays containing negative numbers, which the statement explicitly allows: it returns 'No' for ([5, -1], 4)."}

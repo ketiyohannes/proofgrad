@@ -1,0 +1,142 @@
+{
+  "train": {
+    "problems": 20,
+    "arms": {
+      "base": {
+        "answers": 160,
+        "judge_pass_rate": 0.406,
+        "thin_pass_rate": 0.494,
+        "subtly_wrong_rate": 0.087,
+        "thin_accepted_that_are_wrong": 0.177
+      },
+      "spec": {
+        "answers": 160,
+        "judge_pass_rate": 0.794,
+        "thin_pass_rate": 0.85,
+        "subtly_wrong_rate": 0.056,
+        "thin_accepted_that_are_wrong": 0.066
+      },
+      "thin": {
+        "answers": 160,
+        "judge_pass_rate": 0.588,
+        "thin_pass_rate": 0.688,
+        "subtly_wrong_rate": 0.1,
+        "thin_accepted_that_are_wrong": 0.145
+      }
+    },
+    "differences": {
+      "spec_minus_thin:judge_pass_rate": {
+        "value": 0.206,
+        "ci": [
+          0.081,
+          0.344
+        ]
+      },
+      "spec_minus_thin:subtly_wrong_rate": {
+        "value": -0.044,
+        "ci": [
+          -0.119,
+          0.019
+        ]
+      },
+      "spec_minus_base:judge_pass_rate": {
+        "value": 0.387,
+        "ci": [
+          0.312,
+          0.462
+        ]
+      },
+      "spec_minus_base:subtly_wrong_rate": {
+        "value": -0.031,
+        "ci": [
+          -0.094,
+          0.037
+        ]
+      },
+      "thin_minus_base:judge_pass_rate": {
+        "value": 0.181,
+        "ci": [
+          0.056,
+          0.3
+        ]
+      },
+      "thin_minus_base:subtly_wrong_rate": {
+        "value": 0.013,
+        "ci": [
+          -0.038,
+          0.069
+        ]
+      }
+    }
+  },
+  "test": {
+    "problems": 18,
+    "arms": {
+      "base": {
+        "answers": 144,
+        "judge_pass_rate": 0.41,
+        "thin_pass_rate": 0.562,
+        "subtly_wrong_rate": 0.153,
+        "thin_accepted_that_are_wrong": 0.272
+      },
+      "spec": {
+        "answers": 144,
+        "judge_pass_rate": 0.722,
+        "thin_pass_rate": 0.785,
+        "subtly_wrong_rate": 0.062,
+        "thin_accepted_that_are_wrong": 0.08
+      },
+      "thin": {
+        "answers": 144,
+        "judge_pass_rate": 0.562,
+        "thin_pass_rate": 0.681,
+        "subtly_wrong_rate": 0.118,
+        "thin_accepted_that_are_wrong": 0.173
+      }
+    },
+    "differences": {
+      "spec_minus_thin:judge_pass_rate": {
+        "value": 0.16,
+        "ci": [
+          0.062,
+          0.264
+        ]
+      },
+      "spec_minus_thin:subtly_wrong_rate": {
+        "value": -0.056,
+        "ci": [
+          -0.139,
+          0.028
+        ]
+      },
+      "spec_minus_base:judge_pass_rate": {
+        "value": 0.312,
+        "ci": [
+          0.181,
+          0.444
+        ]
+      },
+      "spec_minus_base:subtly_wrong_rate": {
+        "value": -0.09,
+        "ci": [
+          -0.153,
+          -0.035
+        ]
+      },
+      "thin_minus_base:judge_pass_rate": {
+        "value": 0.153,
+        "ci": [
+          0.028,
+          0.278
+        ]
+      },
+      "thin_minus_base:subtly_wrong_rate": {
+        "value": -0.035,
+        "ci": [
+          -0.111,
+          0.042
+        ]
+      }
+    }
+  }
+}

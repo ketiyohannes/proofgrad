@@ -1,0 +1,12 @@
+{
+  "answers": 304,
+  "state_properties": 1.0,
+  "mean_properties_per_answer": 5.171,
+  "judge_pass_rate_with_properties": 0.388,
+  "judge_pass_rate_without_properties": null,
+  "mean_properties_passing_answers": 5.051,
+  "mean_properties_failing_answers": 5.247,
+  "pass_rate_above_problem_median_count": 0.469,
+  "pass_rate_below_problem_median_count": 0.455,
+  "boilerplate_line_share": 0.015
+}

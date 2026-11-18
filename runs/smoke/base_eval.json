@@ -1,0 +1,399 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "adapter": null,
+  "split": "all",
+  "n_problems": 24,
+  "n_completions": 24,
+  "spec_pass_rate": 0.16666666666666666,
+  "test_pass_rate": 0.16666666666666666,
+  "mean_property_score": 0.3996527777777778,
+  "subtly_wrong_rate": 0.0,
+  "records": [
+    {
+      "id": "kodcode/Apps_10315_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "matches_brute_force",
+        "returns_int",
+        "whole_array_window",
+        "single_element_window",
+        "reversal_invariant",
+        "test_max_consecutive_sum"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef max_consecutive_sum(arr: List[int], k: int) -> int:\n    if not arr or k <= 0:\n        return 0\n\n    n = len(arr)\n    if n < k:\n        return 0\n\n    # Use sliding window to find the maximum sum of exactly k consecutive elements\n    max_sum = 0\n    current_sum = 0\n    left = 0\n\n    for right in range(n):\n        current_sum += arr[right]\n        while right + 1 < n and arr[right + 1] < 0:\n            current_sum -= arr[left]\n            left += 1\n\n        if right + 1 >= n:\n            max_sum = max(max_sum, current_sum)\n        else:\n            current_sum += arr[right + 1]\n            max_sum = max(max_sum, current_sum)\n\n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_1091_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_brute_force",
+        "palindromes_accepted",
+        "test_palindrome_with_spaces_and_punctuations",
+        "test_single_character",
+        "test_odd_length_palindrome",
+        "test_mixed_with_digits_and_punctuation"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_scrambled_palindrome(s: str) -> bool:\n    \"\"\"\n    Determine if a string is a scrambled palindrome.\n    \n    A scrambled palindrome is a string that can be rearranged to form a palindrome.\n    It ignores spaces, punctuation, and digits, and is case-insensitive.\n    \n    Args:\n        s: Input string consisting of alphabetical characters, spaces, and punctuation.\n    \n    Returns:\n        True if the string is a scrambled palindrome, False otherwise.\n    \"\"\"\n    # Filter out non-alphabetical characters (spaces, punctuation, digits)\n    # and convert to lowercase for case-insensitive comparison\n    cleaned = ''.join(c.lower() for c in s if c.isalpha())\n    \n    # If the cleaned string is empty, it's not a scrambled palindrome\n    if not cleaned:\n        return False\n    \n    # Count character frequencies\n    from collections import Counter\n    freq = Counter(cleaned)\n    \n    # For a string to be a palindrome, the count of each character must be even\n    # (since each character appears an even number of times in a palindrome)\n    for count in freq.values():\n        if count % 2 != 0:\n            return False\n    \n    return True\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_11538_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [],
+      "error": "File \"/var/folders/l3/rbbkz99s39lc0gj579m4zpch0000gn/T/proof_ft_o553su8n/solution.py\", line 81\n    for j in range(i + 1, len(nums)):\n                                     ^\nIndentationError: expected an indented block after 'for' statement on line 81",
+      "completion": "```python\nfrom typing import List\n\ndef can_form_arithmetic_progression(nums: List[int]) -> bool:\n    \"\"\"\n    Determine if the list can be rearranged to form an arithmetic progression.\n    \n    An arithmetic progression is a sequence where the difference between consecutive\n    terms is constant. We check all possible permutations of the input list.\n    \n    Args:\n        nums: A list of integers.\n        \n    Returns:\n        True if the list can be rearranged to form an arithmetic progression,\n        False otherwise.\n    \"\"\"\n    if len(nums) < 2:\n        return False\n\n    # Check if the list is already an arithmetic progression\n    if len(nums) == 1:\n        return True\n\n    # Calculate the difference between the first two elements\n    first_diff = nums[1] - nums[0]\n    if first_diff == 0:\n        return True\n\n    # Check all permutations\n    for perm in permutations(nums):\n        # Check if the permutation forms an arithmetic progression\n        if is_arithmetic_progression(perm):\n            return True\n\n    return False\n\n\ndef is_arithmetic_progression(nums: List[int]) -> bool:\n    \"\"\"\n    Check if a list of integers forms an arithmetic progression.\n    \n    Args:\n        nums: A list of integers.\n        \n    Returns:\n        True if the list forms an arithmetic progression, False otherwise.\n    \"\"\"\n    if len(nums) < 2:\n        return False\n\n    # Calculate the difference between the first two elements\n    first_diff = nums[1] - nums[0]\n    if first_diff == 0:\n        return True\n\n    # Check all permutations\n    for perm in permutations(nums):\n        if is_arithmetic_progression(perm):\n            return True\n\n    return False\n\n\ndef permutations(nums: List[int]) -> List[List[int]]:\n    \"\"\"\n    Generate all permutations of a list of integers.\n    \n    Args:\n        nums: A list of integers.\n        \n    Returns:\n        A list of all permutations of the input list.\n    \"\"\"\n    if len(nums) == 0:\n        return []\n    if len(nums) == 1:\n        return [[nums[0]]]\n\n    result = []\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):"
+    },
+    {
+      "id": "kodcode/Apps_11729_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "has_distinct_chars",
+        "is_longest",
+        "leftmost_on_ties",
+        "test_longest_substring_middle_repeats"
+      ],
+      "error": null,
+      "completion": "```python\ndef longest_substring_without_repeating_characters(s: str) -> str:\n    \"\"\"\n    Returns the longest substring without repeating characters.\n    If multiple substrings have the same maximal length, returns the leftmost one.\n    Characters are compared case-sensitively; spaces and punctuation are treated as characters.\n    Time complexity: O(n), where n is the length of the input string.\n    Space complexity: O(n) for the result string.\n    \"\"\"\n    if not s:\n        return \"\"\n\n    # Map to store the last seen index of each character\n    last_seen = {}\n    longest = \"\"\n    start = 0\n\n    for i, char in enumerate(s):\n        if char in last_seen:\n            # Found a repeat; move the start to after the last occurrence of this char\n            start = last_seen[char] + 1\n        last_seen[char] = i\n\n        # Update the longest substring found so far\n        current = s[start:i + 1]\n        if len(current) > len(longest):\n            longest = current\n\n    return longest\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_1350_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "matches_walk",
+        "recursive_peel",
+        "is_permutation",
+        "single_row",
+        "single_column",
+        "test_spiral_order_example1",
+        "test_spiral_order_example2",
+        "test_spiral_order_single_element",
+        "test_spiral_order_single_row",
+        "test_spiral_order_single_column"
+      ],
+      "error": null,
+      "completion": "```python\ndef spiral_order(matrix):\n    \"\"\"\n    Returns a list of elements in spiral order for a 2D list of integers.\n    \n    Args:\n        matrix (list of list of int): A 2D list representing the matrix.\n        \n    Returns:\n        list: Elements in spiral order.\n    \"\"\"\n    if not matrix or not matrix[0]:\n        return []\n    \n    rows = len(matrix)\n    cols = len(matrix[0])\n    \n    result = []\n    top = 0\n    bottom = rows - 1\n    left = 0\n    right = cols - 1\n    \n    while top <= bottom and left <= right:\n        # Traverse right\n        for i in range(left, right + 1):\n            result.append(matrix[top][i])\n            top += 1\n        \n        # Traverse down\n        for i in range(top + 1, bottom + 1):\n            result.append(matrix[i][right])\n            right -= 1\n        \n        # Traverse left\n        for i in range(right, left - 1, -1):\n            result.append(matrix[bottom][i])\n            bottom -= 1\n        \n        # Traverse up\n        for i in range(bottom, top - 1, -1):\n            result.append(matrix[i][left])\n            left += 1\n    \n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_14174_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef count_divisors(arr):\n    \"\"\"\n    Returns a new list where each element is the count of divisors of the corresponding element in arr.\n    \n    Parameters:\n        arr (list of int): Input array of positive integers.\n    \n    Returns:\n        list of int: New list with divisor counts.\n    \"\"\"\n    result = []\n    for num in arr:\n        count = 0\n        for i in range(1, num + 1):\n            if num % i == 0:\n                count += 1\n        result.append(count)\n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_15172_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.625,
+      "failed": [
+        "quadruplets_sum_to_target",
+        "no_duplicates",
+        "complete",
+        "test_example_1",
+        "test_example_2",
+        "test_repeated_elements"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef four_sum(nums: List[int], target: int) -> List[List[int]]:\n    \"\"\"\n    Find all unique quadruplets in nums that sum to target.\n    \n    Args:\n        nums: List of integers\n        target: Target sum\n        \n    Returns:\n        List of lists, each containing a sorted quadruplet that sums to target.\n        Returns empty list if fewer than 4 elements or no solution found.\n    \"\"\"\n    if len(nums) < 4:\n        return []\n    \n    # Sort the array to ensure consistent ordering and unique quadruplets\n    nums.sort()\n    \n    n = len(nums)\n    result = []\n    \n    # Iterate through all possible starting positions for the first element\n    for i in range(n - 3):\n        # Skip if current element is already >= target (cannot form a valid quadruplet)\n        if nums[i] >= target:\n            break\n        \n        # Use two pointers for the remaining three elements\n        left = i + 1\n        right = n - 1\n        \n        while left < right:\n            current_sum = nums[i] + nums[left] + nums[right]\n            \n            if current_sum == target:\n                # Found a valid quadruplet\n                # Add it to result and move pointers\n                result.append([nums[i], nums[left], nums[right]])\n                left += 1\n                right -= 1\n            elif current_sum < target:\n                # Need a larger sum, move left pointer\n                left += 1\n            else:\n                # Need smaller sum, move right pointer\n                right -= 1\n    \n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_17490_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef rotate_list(L, N):\n    \"\"\"\n    Rotate the list L to the right by N positions.\n    \n    Parameters:\n        L (list[int]): The input list of integers.\n        N (int): Number of positions to rotate right.\n    \n    Returns:\n        list[int]: The rotated list.\n    \"\"\"\n    if not L:\n        return []\n    \n    # Handle N = 0 (no rotation needed)\n    if N == 0:\n        return L\n    \n    # Handle N > len(L)\n    if N > len(L):\n        N %= len(L)\n    \n    # Rotate right by N positions\n    # Equivalent to rotating left by (len(L) - N) positions\n    rotated = L[-N:] + L[:-N]\n    \n    return rotated\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_2149_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef prime_factors(n: int) -> list:\n    if not isinstance(n, int) or not isinstance(n, int) or n <= 1:\n        raise ValueError(\"Input must be a positive integer greater than 1\")\n    if n == 1:\n        return []\n    factors = set()\n    d = 2\n    while d * d <= n:\n        while n % d == 0:\n            factors.add(d)\n            n //= d\n        d += 1\n    if n > 1:\n        factors.add(n)\n    return sorted(list(factors))\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_2637_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef max_subarray_sum(arr):\n    \"\"\"\n    Find the maximum sum of any contiguous subarray of the given list of integers.\n    \n    Args:\n        arr (list[int]): A list of integers.\n        \n    Returns:\n        int: The maximum sum of any contiguous subarray.\n    \"\"\"\n    if not arr:\n        return 0\n\n    max_so_far = arr[0]\n    current_max = arr[0]\n\n    for num in arr[1:]:\n        current_max = max(num, current_max + num)\n        max_so_far = max(max_so_far, current_max)\n\n    return max_so_far\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_2730_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "single_character",
+        "finds_extra",
+        "removal_restores_a",
+        "duplicate_extra",
+        "order_invariant",
+        "test_extra_character_at_end",
+        "test_extra_character_at_start",
+        "test_extra_character_in_middle",
+        "test_extra_character_with_repeated_chars",
+        "test_minimum_length",
+        "test_identical_strings_with_extra_char"
+      ],
+      "error": null,
+      "completion": "```python\ndef find_extra_character(A, B):\n    \"\"\"\n    Find the extra character in B, which is a permutation of A with one additional character.\n    \n    Parameters:\n        A (str): The original string (permutation of A)\n        B (str): The string with one extra character\n    \n    Returns:\n        str: The extra character in B\n    \"\"\"\n    # Count character frequencies in A\n    from collections import Counter\n    A_counts = Counter(A)\n    \n    # Count character frequencies in B\n    B_counts = Counter(B)\n    \n    # Find the character that is missing from A but present in B\n    for char, count in A_counts.items():\n        if B_counts[char] > 0:\n            return char\n    return None  # Should not happen based on problem constraints\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_4435_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "detects_pair",
+        "matches_brute_force",
+        "no_self_pairing",
+        "test_pair_sum_with_negative_numbers",
+        "test_pair_sum_large_numbers",
+        "test_pair_sum_unsorted_array"
+      ],
+      "error": null,
+      "completion": "```python\ndef pairSum(arr, target):\n    \"\"\"\n    Returns True if there are two distinct numbers in arr that add up to target,\n    else False.\n    If arr has fewer than two elements, returns False.\n    \"\"\"\n    if len(arr) < 2:\n        return False\n\n    # Use a set to store numbers we've seen so far\n    seen = set()\n    for num in arr:\n        if num in seen:\n            return True\n        seen.add(num)\n\n    return False\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_5650_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6666666666666666,
+      "failed": [
+        "matches_peak_overlap",
+        "back_to_back_share_room",
+        "test_min_meeting_rooms",
+        "test_min_meeting_rooms_edge_cases"
+      ],
+      "error": null,
+      "completion": "```python\ndef min_meeting_rooms(meetings):\n    \"\"\"\n    Returns the minimum number of meeting rooms required to accommodate all meetings.\n    \n    Args:\n        meetings: List of (start, end) tuples representing meetings.\n    \n    Returns:\n        int: Minimum number of meeting rooms required.\n    \"\"\"\n    if not meetings:\n        return 0\n\n    # Sort meetings by start time\n    meetings.sort(key=lambda x: x[0])\n\n    rooms = 0\n    current_room = 0\n\n    for start, end in meetings:\n        # If the current meeting overlaps with the room we're currently using,\n        # we need to increase the room count.\n        if current_room > 0 and end - start <= current_room:\n            current_room += 1\n        else:\n            rooms += 1\n            current_room = 0\n\n    return rooms\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_5864_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "same_length",
+        "matches_definition",
+        "times_self_is_total",
+        "single_zero",
+        "multiple_zeros",
+        "permutation_equivariant",
+        "test_product_except_self_basic",
+        "test_with_zeros",
+        "test_single_zero",
+        "test_negative_numbers",
+        "test_mixed_sign_numbers",
+        "test_small_array"
+      ],
+      "error": null,
+      "completion": "```python\ndef product_except_self(nums):\n    \"\"\"\n    Return an array where answer[i] is the product of all elements of nums except nums[i].\n    Time complexity: O(n)\n    Space complexity: O(n) for the output array (excluding the result itself)\n    \"\"\"\n    n = len(nums)\n    if n == 0:\n        return []\n    if n == 1:\n        return [nums[0]]\n\n    # Compute prefix products and suffix products\n    # prefix[i] = product of nums[0...i]\n    # suffix[i] = product of nums[i...n-1]\n    # answer[i] = prefix[i] * suffix[i]\n\n    prefix = [1] * n\n    suffix = [1] * n\n\n    for i in range(n):\n        prefix[i] = prefix[i - 1] * nums[i]\n\n    for i in range(n - 1, -1, -1):\n        suffix[i] = suffix[i + 1] * nums[i]\n\n    result = [prefix[i] * suffix[i] for i in range(n)]\n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_5911_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "injective_mapping_true",
+        "matches_pattern_oracle",
+        "test_isomorphic_strings_example1",
+        "test_isomorphic_strings_example3",
+        "test_isomorphic_strings_same_characters",
+        "test_isomorphic_strings_no_repeating_characters",
+        "test_isomorphic_strings_different_patterns",
+        "test_isomorphic_strings_single_characters"
+      ],
+      "error": null,
+      "completion": "```python\ndef isomorphic_strings(s: str, t: str) -> bool:\n    \"\"\"\n    Determine if two strings are isomorphic.\n    Two strings are isomorphic if the characters in one string can be replaced\n    to get the second string, with all occurrences of a character mapped to another\n    character while preserving order. No two characters may map to the same character.\n    \"\"\"\n    if len(s) != len(t):\n        return False\n\n    char_counts = {}\n\n    # Count character occurrences in s\n    for char in s:\n        char_counts[char] = char_counts.get(char, 0) + 1\n\n    # Count character occurrences in t\n    for char in t:\n        char_counts[char] = char_counts.get(char, 0) + 1\n\n    # Check if counts match and no character maps to itself\n    for char in char_counts:\n        if char_counts[char] != 1:\n            return False\n\n    # Check if all characters in s map to unique characters in t\n    # We can do this by checking if the set of characters in s is a subset of t\n    # and vice versa, but since we already know counts match, we just need to ensure\n    # that no character maps to itself.\n    # A simpler approach: check if the set of characters in s is a subset of t\n    # and the set of characters in t is a subset of s.\n    s_set = set(s)\n    t_set = set(t)\n\n    if s_set != t_set:\n        return False\n\n    # If sets are equal, then all characters in s must map to characters in t\n    # and vice versa. Since we already ensured no character maps to itself,\n    # this condition is satisfied.\n    return True\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12355_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "is_achievable",
+        "is_upper_bound",
+        "reversal_invariant",
+        "full_window_is_total",
+        "unit_window_is_max",
+        "test_max_sum_k_consecutive_basic",
+        "test_max_sum_k_consecutive_single_element",
+        "test_max_sum_k_consecutive_all_negative",
+        "test_max_sum_k_consecutive_k_equals_len"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_sum_k_consecutive(arr, k):\n    \"\"\"\n    Find the maximum sum of k consecutive elements in arr.\n    \n    Parameters:\n        arr (list[int]): List of integers.\n        k (int): Number of consecutive elements to consider.\n    \n    Returns:\n        int: Maximum sum of k consecutive elements.\n    \"\"\"\n    if not arr:\n        return 0\n    if k < 1 or k > len(arr):\n        return 0\n\n    max_sum = 0\n    current_sum = 0\n    window_start = 0\n\n    for window_end in range(len(arr)):\n        current_sum += arr[window_end]\n        window_end += 1\n\n        while window_end - window_start + 1 >= k:\n            current_sum -= arr[window_start]\n            window_start += 1\n\n            if current_sum < 0:\n                current_sum = 0\n            max_sum = max(max_sum, current_sum)\n\n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12384_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "matches_level_count",
+        "shift_invariant",
+        "too_few_bars_trap_nothing",
+        "monotone_traps_nothing",
+        "basin_fills_to_wall",
+        "test_trapWater_ex1",
+        "test_trapWater_no_water",
+        "test_trapWater_no_elevation",
+        "test_trapWater_single_bar",
+        "test_trapWater_all_same_height",
+        "test_trapWater_maximum_case"
+      ],
+      "error": null,
+      "completion": "```python\ndef trapWater(arr):\n    \"\"\"\n    Calculates the total amount of water that could be trapped after raining.\n    \n    Parameters:\n        arr (list of int): Array of non-negative integers representing elevation.\n    \n    Returns:\n        int: Total trapped water amount.\n    \"\"\"\n    if not arr:\n        return 0\n\n    n = len(arr)\n    if n == 0:\n        return 0\n\n    left = [0] * n\n    right = [0] * n\n    max_h = 0\n\n    # Fill left and right arrays with the maximum height seen so far\n    for i in range(n - 1, -1, -1):\n        if arr[i] > max_h:\n            max_h = arr[i]\n        left[i] = max_h\n\n    for i in range(n - 1, -1, -1):\n        if arr[i] > max_h:\n            max_h = arr[i]\n        right[i] = max_h\n\n    # Calculate trapped water for each bar\n    total_water = 0\n    for i in range(n):\n        height = arr[i]\n        width = 1\n        if i > 0:\n            width = min(width, left[i - 1])\n        if i < n - 1:\n            width = min(width, right[i + 1])\n        total_water += height * width\n\n    return total_water\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12733_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "is_achievable",
+        "is_maximal",
+        "all_same_is_one",
+        "all_distinct_is_full_length",
+        "reversal_invariant",
+        "test_all_same_elements",
+        "test_all_different_elements",
+        "test_mixed_elements",
+        "test_single_element",
+        "test_two_same_elements",
+        "test_two_distinct_elements",
+        "test_repeating_sequence"
+      ],
+      "error": null,
+      "completion": "```python\ndef longest_subarray_with_distinct_integers(nums):\n    \"\"\"\n    Return the length of the longest subarray consisting of distinct integers.\n    If all integers in the array are the same, return 1.\n    \"\"\"\n    if not nums:\n        return 0\n\n    max_len = 1\n    current_len = 1\n    last_seen = {}\n\n    for i, num in enumerate(nums):\n        if num in last_seen:\n            # Found a duplicate; update max_len with the current length\n            max_len = max(max_len, current_len)\n            # Reset current_len to 1 because we're starting a new subarray\n            current_len = 1\n        else:\n            # First time seeing this number, extend the current subarray\n            current_len += 1\n            last_seen[num] = i\n\n    # After the loop, check the last subarray\n    if current_len > max_len:\n        max_len = current_len\n\n    return max_len\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_13287_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.8,
+      "failed": [
+        "characters_placed",
+        "test_restore_string_example_1",
+        "test_restore_string_example_2"
+      ],
+      "error": null,
+      "completion": "```python\ndef restore_string(s: str, indices: list[int]) -> str:\n    \"\"\"\n    Given a string s and a list of indices, restore the original string.\n    \n    The indices array tells us the position of each character in the original string.\n    For example, if s = \"abc\" and indices = [0, 1, 2], then:\n        s[0] = 'a' comes from original index 0\n        s[1] = 'b' comes from original index 1\n        s[2] = 'c' comes from original index 2\n    So the original string is \"abc\".\n    \n    If indices = [0, 2, 1], then:\n        s[0] = 'a' from original index 0\n        s[1] = 'c' from original index 2\n        s[2] = 'b' from original index 1\n        So the original string is \"acb\".\n    \n    We can reconstruct the original string by iterating through the indices\n    and using the corresponding character from s.\n    \"\"\"\n    result = []\n    for i, idx in enumerate(indices):\n        result.append(s[idx])\n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_1517_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "matches_enumeration",
+        "one_or_two_houses",
+        "lower_bounds",
+        "reversal_invariant",
+        "monotone_in_houses",
+        "test_single_house"
+      ],
+      "error": null,
+      "completion": "```python\ndef rob(nums):\n    \"\"\"\n    Returns the maximum amount of money the thief can rob without triggering alarms.\n    \n    The thief cannot rob two adjacent houses. This is a classic dynamic programming problem:\n    - dp[i] = maximum money robable ending at house i\n    - dp[i] = max(dp[i-1], dp[i-2] + nums[i])\n    - Base cases: dp[0] = nums[0], dp[1] = max(nums[0], nums[1])\n    \n    Time complexity: O(n)\n    Space complexity: O(n)\n    \"\"\"\n    if not nums:\n        return 0\n    \n    n = len(nums)\n    if n == 0:\n        return 0\n    \n    # dp[i] = max money ending at house i\n    dp = [0] * n\n    \n    # Base cases\n    dp[0] = nums[0]\n    dp[1] = max(nums[0], nums[1])\n    \n    # Fill DP table\n    for i in range(2, n):\n        dp[i] = max(dp[i-1], dp[i-2] + nums[i])\n    \n    return dp[n-1]\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_17241_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "is_substring_of_length_k",
+        "is_minimal",
+        "full_length_returns_s",
+        "single_char_is_min",
+        "test_standard_case",
+        "test_reverse_case",
+        "test_single_character",
+        "test_all_identical_characters",
+        "test_k_equals_one",
+        "test_varied_characters"
+      ],
+      "error": null,
+      "completion": "```python\ndef smallest_lexicographic_substring(s: str, k: int) -> str:\n    \"\"\"\n    Return the smallest lexicographically substring of length k from s.\n    If no such substring exists, return an empty string.\n    \"\"\"\n    if k < 1 or k > len(s):\n        return \"\"\n\n    # Find the first occurrence of the smallest character\n    min_char = min(s)\n    min_idx = s.find(min_char)\n\n    if min_idx == -1:\n        return \"\"\n\n    # Start from the first occurrence of min_char\n    start = min_idx\n    end = start + k - 1\n\n    # If the substring is longer than s, take the whole string\n    if end > len(s):\n        return s\n\n    # Return the substring from start to end\n    return s[start:end]\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_17404_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "returned_start_is_valid",
+        "returned_start_is_smallest",
+        "feasible_iff_enough_gas",
+        "single_station",
+        "test_circular_array_possible_case_1",
+        "test_circular_array_not_possible_case",
+        "test_circular_array_possible_case_2",
+        "test_circular_array_single_element",
+        "test_circular_array_single_element_insufficient"
+      ],
+      "error": null,
+      "completion": "```python\ndef can_complete_circuit(nums, cost):\n    n = len(nums)\n    if n == 0:\n        return -1\n    \n    # dp[i] = minimum gas we need to have at position i to complete the circuit\n    # We want dp[0] == 0 (start at any position, but we'll track the minimum needed at each position)\n    # Actually, we can think of it as: at position i, we have some gas, we pay cost[i] to move to i+1,\n    # and we need to have enough gas to cover the cost of the next segment.\n    # So dp[i] = min(dp[i-1] + cost[i], nums[i] - dp[i-1])\n    # where dp[-1] = infinity (or a very large number)\n    \n    dp = [float('inf')] * n\n    dp[0] = 0\n    \n    for i in range(1, n):\n        # Option 1: Continue from previous position\n        # We need to have enough gas to pay cost[i] and then have enough for the next segment\n        # The next segment starts at i+1, so we need dp[i-1] + cost[i] >= nums[i]\n        if dp[i-1] + cost[i] >= nums[i]:\n            dp[i] = dp[i-1] + cost[i]\n        else:\n            # Option 2: Start fresh at i\n            dp[i] = nums[i]\n    \n    # Check if we can complete the circuit: dp[n-1] == 0\n    return dp[n-1] == 0\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_18645_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "is_member",
+        "is_third_distinct_max",
+        "fewer_than_three_returns_max",
+        "order_invariant",
+        "duplicate_invariant",
+        "test_third_distinct_maximum_default",
+        "test_third_distinct_maximum_few_elements",
+        "test_third_distinct_maximum_duplicates",
+        "test_third_distinct_maximum_large_list",
+        "test_third_distinct_maximum_all_same",
+        "test_third_distinct_maximum_with_negative",
+        "test_third_distinct_maximum_mixed_positive_negative"
+      ],
+      "error": null,
+      "completion": "```python\ndef third_max(nums):\n    \"\"\"\n    Return the third distinct maximum number in nums.\n    If the third distinct maximum does not exist, return the maximum number.\n    Time complexity: O(n)\n    \"\"\"\n    if not nums:\n        return None\n\n    # Sort in descending order\n    nums.sort(reverse=True)\n\n    # Count distinct values\n    distinct_count = 0\n    for x in nums:\n        if x not in distinct_count:\n            distinct_count += 1\n\n    # If we have at least 3 distinct values, return the third one\n    if distinct_count >= 3:\n        return nums[distinct_count - 2]\n    else:\n        # If fewer than 3 distinct values, return the maximum\n        return nums[0]\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_19361_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "first_k_words",
+        "is_prefix_at_word_boundary",
+        "no_outer_spaces",
+        "exactly_k_words",
+        "test_truncate_sentence"
+      ],
+      "error": null,
+      "completion": "```python\ndef truncate_sentence(s, k):\n    \"\"\"\n    Truncate a sentence such that it contains only the first k words.\n    \n    Parameters:\n        s (str): The input sentence.\n        k (int): The number of words to keep (1 <= k <= len(s.split())).\n    \n    Returns:\n        str: The truncated sentence with only the first k words.\n    \"\"\"\n    words = s.split()\n    if not words:\n        return \"\"\n    if k >= len(words):\n        return s\n    return words[:k] + \" \" + \" \".join(words[:k])\n```\n"
+    }
+  ],
+  "seconds": 95.3
+}

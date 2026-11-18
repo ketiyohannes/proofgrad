@@ -1,0 +1,17 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "adapter": "runs/long/grpo/final",
+  "humaneval": {
+    "tasks": 164,
+    "base_pass@1": 0.38414634146341464,
+    "plus_pass@1": 0.34146341463414637,
+    "base_only_rate": 0.042682926829268296
+  },
+  "mbpp": {
+    "tasks": 378,
+    "base_pass@1": 0.30158730158730157,
+    "plus_pass@1": 0.25925925925925924,
+    "base_only_rate": 0.042328042328042326,
+    "generation_seconds": 1747.9
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "problems": 51,
+  "answers": 408,
+  "wrong_answers": 253,
+  "checkers": {
+    "thin": {
+      "false_accept_rate": 0.206,
+      "false_accept_ci": [
+        0.139,
+        0.284
+      ],
+      "false_reject_rate": 0.0,
+      "accepted_answers_that_are_wrong": 0.251,
+      "problems_with_a_false_accept": 27
+    },
+    "tests": {
+      "false_accept_rate": 0.016,
+      "false_accept_ci": [
+        0.004,
+        0.031
+      ],
+      "false_reject_rate": 0.0,
+      "accepted_answers_that_are_wrong": 0.025,
+      "problems_with_a_false_accept": 4
+    },
+    "spec": {
+      "false_accept_rate": 0.004,
+      "false_accept_ci": [
+        0.0,
+        0.013
+      ],
+      "false_reject_rate": 0.013,
+      "accepted_answers_that_are_wrong": 0.006,
+      "problems_with_a_false_accept": 1
+    }
+  },
+  "thin_minus_spec": 0.202,
+  "thin_minus_spec_ci": [
+    0.135,
+    0.28
+  ],
+  "gate_passed": true,
+  "passes_spec_and_tests_but_not_judge": {}
+}

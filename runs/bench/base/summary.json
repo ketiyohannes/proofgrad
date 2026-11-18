@@ -1,0 +1,17 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "adapter": null,
+  "humaneval": {
+    "tasks": 164,
+    "base_pass@1": 0.32926829268292684,
+    "plus_pass@1": 0.29878048780487804,
+    "base_only_rate": 0.03048780487804878
+  },
+  "mbpp": {
+    "tasks": 378,
+    "base_pass@1": 0.2804232804232804,
+    "plus_pass@1": 0.24338624338624337,
+    "base_only_rate": 0.037037037037037035,
+    "generation_seconds": 1735.7
+  }
+}

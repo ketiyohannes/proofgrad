@@ -1,0 +1,504 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "adapter": "runs/full/spec/final",
+  "split": "test",
+  "n_problems": 33,
+  "n_completions": 33,
+  "spec_pass_rate": 0.24242424242424243,
+  "test_pass_rate": 0.24242424242424243,
+  "mean_property_score": 0.4568181818181818,
+  "subtly_wrong_rate": 0.0,
+  "records": [
+    {
+      "id": "kodcode/Apps_10371_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [],
+      "error": "File \"/var/folders/l3/rbbkz99s39lc0gj579m4zpch0000gn/T/proof_ft_bp7hxypv/solution.py\", line 58\n    if not visited\n                  ^\nSyntaxError: expected ':'",
+      "completion": "```python\ndef max_infection_time(N, M, streets, S):\n    \"\"\"\n    Determines the maximum number of minutes required to infect all reachable neighborhoods.\n    \n    Logic:\n    - The virus spreads in rounds.\n    - In each round, an infected neighborhood infects all its neighbors that are not already infected.\n    - This is equivalent to finding the diameter of the connected component containing S.\n    - If the component is a single node, time is 0.\n    - If the component is a tree, the time is the diameter (longest path length).\n    - If the component is a cycle, the time is the diameter (longest path length).\n    - If the component is disconnected, time is 0.\n    \"\"\"\n    # Build adjacency list\n    graph = [[] for _ in range(N + 1)]\n    for u, v in streets:\n        graph[u].append(v)\n        graph[v].append(u)\n    \n    # Find connected component containing S\n    visited = [False] * (N + 1)\n    component = []\n    if S in range(N + 1):\n        stack = [S]\n        visited[S] = True\n        while stack:\n            node = stack.pop()\n            component.append(node)\n            for neighbor in graph[node]:\n                if not visited[neighbor]:\n                    visited[neighbor] = True\n                    stack.append(neighbor)\n    \n    if len(component) == 1:\n        return 0\n    \n    # Calculate diameter of the component\n    # We can use BFS/DFS to find the farthest node from S, then find the farthest node from that\n    # or simply run BFS from S to find the farthest node, then run BFS from that farthest node\n    # to find the longest path.\n    \n    # BFS to find farthest node from S\n    farthest_node = S\n    max_dist = 0\n    queue = [S]\n    visited = [False] * (N + 1)\n    visited[S] = True\n    \n    while queue:\n        node = queue.pop(0)\n        if node == farthest_node:\n            break\n        if visited[node]:\n            continue\n        visited[node] = True\n        max_dist = max(max_dist, dist(node))\n        for neighbor in graph[node]:\n            if not visited"
+    },
+    {
+      "id": "kodcode/Apps_11538_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_brute_force",
+        "progressions_accepted",
+        "test_arithmetic_progression_possible"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef can_form_arithmetic_progression(nums: List[int]) -> bool:\n    \"\"\"\n    Determines if the list of integers can form an arithmetic progression \n    after permuting its elements.\n    \n    An arithmetic progression requires that the difference between consecutive \n    terms is constant. If we can reorder the list such that the difference \n    between adjacent elements is constant, the function returns True.\n    \"\"\"\n    if len(nums) < 2:\n        return False\n    \n    # Calculate the difference between the first two elements\n    first_diff = nums[1] - nums[0]\n    \n    # Check if the difference is constant for all pairs\n    for i in range(1, len(nums)):\n        if nums[i] - nums[i-1] != first_diff:\n            return False\n    \n    return True\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_13951_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef num_islands(grid):\n    \"\"\"\n    Counts the number of islands in the given 2D grid.\n    An island is a connected group of '1's (land) surrounded by '0's (water).\n    All four edges of the grid are considered water.\n    \n    Args:\n        grid: List of lists of strings, where '1' represents land and '0' represents water.\n        \n    Returns:\n        int: Number of distinct islands.\n    \"\"\"\n    if not grid:\n        return 0\n    \n    rows = len(grid)\n    cols = len(grid[0]) if rows > 0 else 0\n    \n    if cols == 0:\n        return 0\n    \n    # Initialize a visited matrix to keep track of island cells\n    visited = [[False] * cols for _ in range(rows)]\n    island_count = 0\n    \n    # Directions: Up, Down, Left, Right\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n    \n    for r in range(rows):\n        for c in range(cols):\n            if grid[r][c] == '1' and not visited[r][c]:\n                island_count += 1\n                # Start BFS/DFS to explore the entire island\n                queue = [(r, c)]\n                visited[r][c] = True\n                \n                while queue:\n                    curr_r, curr_c = queue.pop(0)\n                    \n                    for dr, dc in directions:\n                        nr, nc = curr_r + dr, curr_c + dc\n                        if 0 <= nr < rows and 0 <= nc < cols and not visited[nr][nc] and grid[nr][nc] == '1':\n                            visited[nr][nc] = True\n                            queue.append((nr, nc))\n    \n    return island_count\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_14430_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "matches_definition",
+        "bounds",
+        "zero_iff_equal",
+        "single_edit",
+        "empty_string",
+        "test_example_case",
+        "test_same_strings",
+        "test_only_insertions",
+        "test_only_deletions",
+        "test_replacement",
+        "test_empty_s1",
+        "test_empty_s2",
+        "test_both_empty",
+        "test_long_strings"
+      ],
+      "error": null,
+      "completion": "```python\ndef min_operations(s1: str, s2: str) -> int:\n    \"\"\"\n    Calculates the minimum number of operations (Insert, Remove, Replace) \n    to transform string s1 into string s2.\n    \n    This solution uses Dynamic Programming. Let dp[i][j] be the minimum operations \n    to transform s1[0...i-1] into s2[0...j-1].\n    The base case is dp[0][0] = 0.\n    For each position, we consider the three possible operations:\n    1. Insert: dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n    2. Remove: dp[i][j] = 1 + min(dp[i][j], dp[i-1][j], dp[i-1][j-1])\n    3. Replace: dp[i][j] = 1 + min(dp[i][j], dp[i-1][j], dp[i-1][j-1])\n    \n    We iterate through the strings and return dp[n][m].\n    \"\"\"\n    n, m = len(s1), len(s2)\n    \n    # Initialize DP table with infinity\n    # Using a large number to represent infinity\n    INF = float('inf')\n    dp = [[INF] * (m + 1) for _ in range(n + 1)]\n    \n    # Base case: empty prefix of s1 matches empty prefix of s2\n    dp[0][0] = 0\n    \n    # Fill the DP table\n    for i in range(1, n + 1):\n        for j in range(1, m + 1):\n            # Option 1: Insert a character into s1\n            # Cost is 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n            # We take the minimum of the three previous states\n            dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1])\n            \n            # Option 2: Remove a character from s1\n            # Cost is 1 + min(dp[i][j], dp[i-1][j], dp[i-"
+    },
+    {
+      "id": "kodcode/Apps_15172_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.625,
+      "failed": [
+        "no_duplicates",
+        "complete",
+        "ordered",
+        "test_example_1",
+        "test_example_2",
+        "test_repeated_elements"
+      ],
+      "error": null,
+      "completion": "```python\ndef four_sum(nums, target):\n    \"\"\"\n    Finds all unique quadruplets in the array that sum up to the target.\n    Returns a list of lists, where each inner list is a sorted quadruplet.\n    \"\"\"\n    if len(nums) < 4:\n        return []\n    \n    # Sort the array to ensure unique quadruplets and consistent ordering\n    nums.sort()\n    \n    result = []\n    \n    # Iterate through all possible triplets (i, j, k)\n    for i in range(len(nums) - 3):\n        for j in range(i + 1, len(nums) - 2):\n            for k in range(j + 1, len(nums) - 1):\n                # Sum the current triplet\n                current_sum = nums[i] + nums[j] + nums[k]\n                \n                # Check if the remaining element (nums[len(nums)-1]) can complete the target\n                if current_sum + nums[len(nums) - 1] == target:\n                    # Extract the quadruplet\n                    quadruplet = [nums[i], nums[j], nums[k], nums[len(nums) - 1]]\n                    # Add to result (already sorted due to triplets being sorted)\n                    result.append(quadruplet)\n    \n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_17182_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef filter_primes(numbers):\n    \"\"\"\n    Returns a new list containing only the prime numbers from the input list.\n    - Numbers less than 2 (including 0, 1, and negatives) are not prime.\n    - Duplicates are kept in the original order.\n    \"\"\"\n    result = []\n    for num in numbers:\n        if num < 2:\n            continue\n        is_prime = True\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                is_prime = False\n                break\n        if is_prime:\n            result.append(num)\n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_2934_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef increment_array(arr):\n    \"\"\"\n    Takes an array of integers and returns a new array where each element is incremented by 1.\n    \"\"\"\n    return [x + 1 for x in arr]\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_3594_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "count_line",
+        "line_count",
+        "senders_sorted",
+        "sections_hold_right_orders",
+        "receivers_sorted_stable",
+        "degenerate",
+        "test_group_and_sort_orders_sample",
+        "test_group_and_sort_orders_single_order",
+        "test_group_and_sort_orders_multiple_senders",
+        "test_group_and_sort_orders_same_receiver",
+        "test_group_and_sort_orders_empty"
+      ],
+      "error": null,
+      "completion": "```python\ndef group_and_sort_orders(n, orders):\n    \"\"\"\n    Groups orders by sender, sorts orders within each sender by receiver name,\n    and outputs the result in the specified format.\n    \"\"\"\n    # Dictionary to store groups: sender -> list of (receiver, items)\n    groups = {}\n    \n    # List to store the final output list\n    output = []\n    \n    # Process each order\n    for sender, receiver, items_str in orders:\n        # Create a key for this group: sender + receiver\n        key = (sender, receiver)\n        \n        if key not in groups:\n            groups[key] = []\n        \n        groups[key].append((receiver, items_str))\n    \n    # Sort each group by receiver name (ascending)\n    for key in groups:\n        groups[key].sort(key=lambda x: x[0])\n    \n    # Build the output list\n    for sender, receiver, items_str in groups:\n        output.append(f\"{sender}\\n\")\n        output.append(f\"{receiver}\\n\")\n        output.append(\" \".join(items_str))\n    \n    # Return the result as a list of strings\n    return output\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_3781_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [],
+      "error": "File \"/var/folders/l3/rbbkz99s39lc0gj579m4zpch0000gn/T/proof_ft_vj6vxki9/solution.py\", line 47\n    # However, the problem says \"If\n                                   ^\nIndentationError: expected an indented block after 'else' statement on line 39",
+      "completion": "```python\ndef days_to_reach_max_height(T, test_cases):\n    \"\"\"\n    Determines the day a plant reaches its maximum height.\n    Returns the day if it reaches the limit, otherwise \"Infinity\".\n    \"\"\"\n    # Initialize result list to store answers for each test case\n    results = []\n    \n    for _ in range(T):\n        H, G, L = test_cases[_]\n        \n        # If initial height is already >= limit, it never grows\n        if H >= L:\n            results.append(\"Infinity\")\n        else:\n            # Calculate height on day n: H + n * G\n            # We need to find the smallest n such that H + n * G >= L\n            # Rearranging: n * G >= L - H\n            # n >= (L - H) / G\n            \n            # Since G > 0, we can perform floating point division safely.\n            # However, to avoid precision issues with large integers,\n            # we can multiply both sides by G and compare integers directly.\n            # n * G >= L - H  =>  n >= (L - H) / G\n            \n            # To avoid float issues, we can use integer arithmetic:\n            # We want smallest integer n such that n * G >= L - H\n            # This is equivalent to n >= ceil((L - H) / G)\n            \n            # Calculate numerator: L - H\n            numerator = L - H\n            \n            # Calculate denominator: G\n            denominator = G\n            \n            # If numerator is 0, then n >= 0, so n=0 is the answer.\n            if numerator == 0:\n                results.append(\"Infinity\")\n            else:\n                # Calculate ceil(a/b) using integer arithmetic: (a + b - 1) // b\n                # Here a = numerator, b = denominator\n                # We need ceil(numerator / denominator)\n                # Since numerator and denominator are positive (H, G >= 1), this is safe.\n                # Note: L <= 10^9, H >= 1, so numerator can be negative if H > L.\n                # If numerator < 0, then (L - H) / G is negative, and ceil is negative.\n                # If the result is negative, it means the plant never reaches the limit.\n                # However, the problem says \"If"
+    },
+    {
+      "id": "kodcode/Apps_6096_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "is_max_window",
+        "upper_bound",
+        "attained",
+        "extreme_k",
+        "best_at_end",
+        "test_max_units_sold_example1",
+        "test_max_units_sold_example2",
+        "test_max_units_sold_single_day",
+        "test_max_units_sold_all_days",
+        "test_max_units_sold_consecutive_days"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_units_sold_over_k_days(n, sales, k):\n    \"\"\"\n    Computes the maximum sum of units sold over any k consecutive days.\n    \n    Args:\n        n (int): Number of days.\n        sales (list): List of integers representing units sold each day.\n        k (int): Number of consecutive days.\n    \n    Returns:\n        int: Maximum sum of units sold over any k consecutive days.\n    \"\"\"\n    if n < k:\n        return 0\n    \n    max_sum = 0\n    current_sum = 0\n    \n    for i in range(n - k + 1):\n        current_sum = sales[i] + current_sum\n        if current_sum > max_sum:\n            max_sum = current_sum\n            \n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_7099_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef find_shortest_word_length(s: str) -> int:\n    \"\"\"\n    Returns the length of the shortest word in the input string.\n    Words are separated by spaces, and punctuation is ignored.\n    \"\"\"\n    words = s.split()\n    if not words:\n        return 0\n    \n    return min(len(word) for word in words)\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_7973_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "matches_reduction_oracle",
+        "balanced_is_true",
+        "other_chars_ignored",
+        "test_balanced_expression",
+        "test_balanced_expression_with_nested_brackets",
+        "test_single_type_balanced",
+        "test_complex_balanced_expression",
+        "test_long_unbalanced_expression"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_balanced(expression: str) -> bool:\n    \"\"\"\n    Determines if the given string is balanced.\n    A string is balanced if every opening bracket has a corresponding closing bracket \n    of the same type, and the brackets are properly nested.\n    \"\"\"\n    stack = []\n    \n    for char in expression:\n        if char in \"([{\":\n            # Push opening bracket onto stack\n            stack.append(char)\n        elif char in \")]}\":\n            # Check if stack is empty and the top matches the current char\n            if not stack or stack[-1] != char:\n                return False\n            # Pop from stack\n            stack.pop()\n    \n    # If the stack is empty, all brackets were properly matched and nested\n    return len(stack) == 0\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_8549_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.25,
+      "failed": [
+        "matches_enumeration",
+        "extends_in_two_ways",
+        "base_cases",
+        "test_count_valid_sequences_single",
+        "test_count_valid_sequences_triple",
+        "test_count_valid_sequences_four",
+        "test_count_valid_sequences_large"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_valid_sequences(N):\n    \"\"\"\n    Calculates the number of distinct valid sequences of length N using colors Red, Green, and Blue.\n    No two lights of the same color can be adjacent.\n    \n    This is a classic combinatorial problem.\n    - We have 3 distinct colors.\n    - We need to arrange them in a sequence of length N.\n    - The total number of permutations of 3 distinct items is 3! = 6.\n    - Since the colors are distinct (Red, Green, Blue), the order matters.\n    - The constraint \"no two lights of the same color are adjacent\" is automatically satisfied \n      by the definition of permutations of distinct items.\n    \n    Therefore, the answer is simply 3! = 6.\n    \"\"\"\n    return 6\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_9026_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "matches_brute_force",
+        "bounds",
+        "all_equal",
+        "all_distinct",
+        "test_two_character_string_non_palindrome",
+        "test_two_character_string_palindrome",
+        "test_three_character_string_mixed",
+        "test_three_character_string_all_same",
+        "test_palindrome_string",
+        "test_mixed_string",
+        "test_long_string"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_palindromic_substrings(s: str) -> int:\n    \"\"\"\n    Counts the number of palindromic substrings in the given string.\n    Each character is a valid palindromic substring.\n    \"\"\"\n    if not s:\n        return 0\n    \n    count = 0\n    n = len(s)\n    \n    # Iterate through each character as a potential starting point\n    for i in range(n):\n        # Check for odd-length palindromes (centered at i)\n        for j in range(i, n):\n            count += 1\n            \n        # Check for even-length palindromes (centered between i and j)\n        for k in range(i + 1, n):\n            count += 1\n            \n    return count\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_9307_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef process_registrations(T, registrations):\n    \"\"\"\n    Processes the registration process for the coding contest.\n    \n    For each test case, it calculates:\n    1. The number of complete groups that can be formed.\n    2. The number of participants who will not fit into any group.\n    \n    Args:\n        T (int): Number of test cases.\n        registrations (list of tuples): List of (N, K) pairs where N is total participants and K is group size.\n    \n    Returns:\n        list of tuples: Each tuple is (groups, leftover)\n    \"\"\"\n    result = []\n    \n    for n, k in registrations:\n        # Calculate complete groups\n        groups = n // k  # Integer division\n        # Calculate leftover participants\n        leftover = n % k\n        \n        result.append((groups, leftover))\n    \n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12355_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "is_achievable",
+        "full_window_is_total",
+        "unit_window_is_max",
+        "test_max_sum_k_consecutive_all_negative"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_sum_k_consecutive(arr, k):\n    \"\"\"\n    Finds the maximum sum of k consecutive elements in the list arr.\n    \n    Constraints & Optimization:\n    - Handles edge cases (empty list, k < 1, k > len(arr)) by returning 0.\n    - Uses a sliding window approach with O(n) time complexity, which is optimal for large inputs.\n    - Uses a list to store current window sums to avoid recalculating from scratch.\n    \"\"\"\n    if not arr:\n        return 0\n    \n    if k < 1 or k > len(arr):\n        return 0\n    \n    max_sum = 0\n    \n    # Initialize the first window\n    current_sum = sum(arr[:k])\n    max_sum = max(max_sum, current_sum)\n    \n    # Slide the window across the array\n    for i in range(k, len(arr)):\n        # Remove the element leaving the window\n        current_sum -= arr[i - k]\n        # Add the new element entering the window\n        current_sum += arr[i]\n        # Update maximum if this is a larger sum\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12471_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef is_palindrome(s: str) -> bool:\n    \"\"\"\n    Checks if the given string is a palindrome after converting to lowercase\n    and removing non-alphanumeric characters.\n    \"\"\"\n    # Convert to lowercase and remove non-alphanumeric characters\n    cleaned = ''.join(c.lower() for c in s if c.isalnum())\n    \n    # Check if the cleaned string is equal to its reverse\n    return cleaned == cleaned[::-1]\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_15256_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_definition",
+        "target_is_first",
+        "test_all_elements_different",
+        "test_negative_numbers",
+        "test_mixed_sign_numbers",
+        "test_zero_case"
+      ],
+      "error": null,
+      "completion": "```python\ndef min_operations_to_equalize(arr):\n    \"\"\"\n    Calculates the minimum number of operations to make all elements equal to arr[0].\n    Operations allowed: increment or decrement arr[i] by 1 for 1 <= i < n.\n    Cannot modify arr[0].\n    \"\"\"\n    if len(arr) == 1:\n        return 0\n    \n    target = arr[0]\n    current = arr[0]\n    \n    # Calculate the absolute difference between the target and the current element\n    diff = abs(current - target)\n    \n    # The minimum operations required is the absolute difference\n    return diff\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_17814_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.3333333333333333,
+      "failed": [
+        "matches_definition",
+        "length_is_achievable",
+        "reverse_invariant",
+        "degenerate_cases",
+        "test_length_of_longest_substring"
+      ],
+      "error": null,
+      "completion": "```python\ndef length_of_longest_substring(s: str) -> int:\n    \"\"\"\n    Returns the length of the longest substring without repeating characters.\n    \n    Args:\n        s (str): The input string containing any characters.\n        \n    Returns:\n        int: The length of the longest unique substring.\n    \"\"\"\n    if not s:\n        return 0\n    \n    # Dictionary to store the last seen index of each character\n    last_index = {}\n    longest = 0\n    start = 0  # Index of the character in the current substring\n    \n    for i, char in enumerate(s):\n        # If the character has been seen before at a position >= current index,\n        # move the start pointer to the position after the previous occurrence\n        if char in last_index:\n            start = last_index[char]\n        \n        # Update the last seen index of the current character\n        last_index[char] = i\n        \n        # Update the longest length found so far\n        longest = max(longest, i - start + 1)\n        \n    return longest\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_18668_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_definition",
+        "achieved_by_pair",
+        "is_upper_bound",
+        "reverse_invariant",
+        "tiny_inputs",
+        "test_max_area_example",
+        "test_max_area_two_buildings",
+        "test_max_area_all_same_height",
+        "test_max_area_increasing_heights",
+        "test_max_area_decreasing_heights"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_area(heights):\n    \"\"\"\n    Returns the maximum area of a rectangle formed by the buildings.\n    The width between buildings i and j is j - i.\n    The height of the rectangle is the minimum of the heights at i and j.\n    \"\"\"\n    if len(heights) < 2:\n        return 0\n    \n    min_height = float('inf')\n    max_area = 0\n    \n    for i in range(len(heights)):\n        current_height = heights[i]\n        if current_height < min_height:\n            min_height = current_height\n        \n        # Calculate area for the rectangle defined by min_height\n        # Width is i - (i - 1) = 1\n        # Area = min_height * 1\n        area = min_height\n        \n        if area > max_area:\n            max_area = area\n            \n    return max_area\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_19703_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_definition",
+        "reverse_invariant",
+        "monotone_traps_nothing",
+        "single_basin",
+        "degenerate_cases",
+        "test_trap_example_case",
+        "test_trap_no_water",
+        "test_trap_single_pit",
+        "test_trap_complex_case",
+        "test_trap_large_values",
+        "test_trap_multiple_valleys"
+      ],
+      "error": null,
+      "completion": "```python\ndef trap(height):\n    \"\"\"\n    Calculates the amount of water that can be trapped after raining.\n    \n    Args:\n        height (list): List of non-negative integers representing column heights.\n        \n    Returns:\n        int: Total amount of trapped water.\n    \"\"\"\n    if not height:\n        return 0\n    \n    n = len(height)\n    if n == 0:\n        return 0\n    \n    # Initialize left and right boundaries\n    left = 0\n    right = n - 1\n    \n    # Initialize water levels for each column\n    water = [0] * n\n    \n    # Fill left boundary\n    while left < n and height[left] <= height[right]:\n        water[left] = height[left]\n        left += 1\n    \n    # Fill right boundary\n    while right > 0 and height[right] <= height[left]:\n        water[right] = height[right]\n        right -= 1\n    \n    # Calculate trapped water\n    total_water = 0\n    for i in range(n):\n        if water[i] > 0:\n            total_water += water[i]\n            \n    return total_water\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_23131_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "matches_definition",
+        "too_few_flowers",
+        "exact_fit",
+        "single_flower_bouquets",
+        "test_can_make_bouquets_case2",
+        "test_can_make_bouquets_case3",
+        "test_can_make_bouquets_case4",
+        "test_can_make_bouquets_case5",
+        "test_can_make_bouquets_case8"
+      ],
+      "error": null,
+      "completion": "```python\ndef can_make_bouquets(flowers, k, m):\n    \"\"\"\n    Determines if it is possible to pick m bouquets of size k such that each bouquet \n    consists of exactly k consecutive flowers.\n    \n    A flower can be picked on day d if its blooming day <= d.\n    Each flower can be used in at most one bouquet.\n    \"\"\"\n    if m == 0:\n        return True\n    \n    # Sort the blooming days to easily check consecutive sequences\n    sorted_flowers = sorted(flowers)\n    \n    # Iterate through all possible starting days from 0 to len(sorted_flowers) - k\n    # If we find a sequence of k consecutive days where every flower is available,\n    # then we can form a valid bouquet.\n    for start in range(len(sorted_flowers) - k + 1):\n        # Check if the current window [start, start + k - 1] is valid\n        valid = True\n        for i in range(start, start + k):\n            if sorted_flowers[i] > start + k:\n                valid = False\n                break\n        \n        if valid:\n            return True\n    \n    return False\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_23322_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "balanced_is_valid",
+        "matches_definition",
+        "test_valid_expressions",
+        "test_miscellaneous_cases"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_valid_expression(expression: str) -> bool:\n    \"\"\"\n    Determines if the given expression is a valid arithmetic expression.\n    A valid expression must have all opening brackets with matching closing brackets\n    and correct nesting.\n    \"\"\"\n    stack = []\n    \n    # Iterate through each character in the expression\n    for char in expression:\n        if char in '([{':\n            # Push opening bracket onto stack\n            stack.append(char)\n        elif char in ')]}':\n            # If stack is not empty and top matches current char, pop\n            if stack and stack[-1] == char:\n                stack.pop()\n            # If stack is empty or top doesn't match, invalid\n            else:\n                return False\n    \n    # If stack is empty, all brackets were properly matched\n    return len(stack) == 0\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_24787_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [],
+      "error": "File \"/var/folders/l3/rbbkz99s39lc0gj579m4zpch0000gn/T/proof_ft_nbw9past/solution.py\", line 43\n    # So we need i + k - 1 >= i =>\n                                  ^\nIndentationError: expected an indented block after 'else' statement on line 40",
+      "completion": "```python\ndef rearrange_string(s: str, k: int) -> str:\n    if k <= 1:\n        return s\n    \n    # Count character frequencies\n    from collections import Counter\n    counts = Counter(s)\n    \n    # If any character has frequency 1, it cannot be separated by k positions.\n    # So if k <= 1, it's always valid (since no two chars can be adjacent).\n    # If k > 1, we need to check if we can place them with gap >= k.\n    # A character with count 1 cannot be separated by k positions.\n    if any(count == 1 for count in counts.values()):\n        return \"\"\n    \n    # Sort the characters to easily check constraints\n    sorted_chars = sorted(counts.items(), key=lambda x: x[1])\n    \n    # We need to place each character at a position such that:\n    # 1. No two characters are adjacent (distance >= k)\n    # 2. All characters are used exactly once\n    \n    # Sort by frequency (descending) so we process longer runs first\n    sorted_chars.sort(key=lambda x: x[1], reverse=True)\n    \n    result = []\n    for char, count in sorted_chars:\n        # Try to place this character at index i\n        # Condition: i + k - 1 >= i (always true)\n        # Condition: i + k - 1 >= i + 1 => i + k - 1 >= i + 1 => k >= 2\n        # If k == 1, any position works.\n        # If k > 1, we need at least one character before this one to ensure gap >= k.\n        # Specifically, if we place at index i, the next character must be at index >= i + k.\n        # Since we iterate sorted by count, the previous character (if any) was at index < i.\n        # So we need i + k - 1 >= i => k >= 2.\n        \n        if k == 1:\n            # If k <= 1, any position is valid.\n            result.append(char)\n        else:\n            # We need at least one character before this one to ensure gap >= k.\n            # The previous character was at index < i.\n            # So we need i + k - 1 >= i =>"
+    },
+    {
+      "id": "kodcode/Leetcode_2585_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef remove_duplicates(s: str) -> str:\n    \"\"\"\n    Removes all duplicate characters from the input string s.\n    Only the first occurrence of each character is kept.\n    Returns an empty string if s is empty.\n    \"\"\"\n    if not s:\n        return \"\"\n    \n    result = []\n    char_index = {}\n    \n    for char in s:\n        if char in char_index:\n            # Skip the duplicate\n            pass\n        else:\n            # Add the first occurrence\n            char_index[char] = 1\n            result.append(char)\n    \n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_3517_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "matches_brute_force",
+        "rising",
+        "order_matters",
+        "test_max_profit_basic_case",
+        "test_max_profit_fluctuating_prices"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef maxProfit(prices: List[int]) -> int:\n    \"\"\"\n    Maximizes profit by buying on one day and selling on a later day.\n    \n    Time Complexity: O(n)\n    Space Complexity: O(1)\n    \"\"\"\n    if not prices:\n        return 0\n    \n    max_profit = 0\n    \n    for i in range(len(prices) - 1):\n        if prices[i] < prices[i + 1]:\n            max_profit = max(max_profit, prices[i + 1] - prices[i])\n            \n    return max_profit\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_42949_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "is_optimal",
+        "lower_bounds",
+        "single_processor",
+        "test_minTime_single_processor",
+        "test_minTime_diverse",
+        "test_minTime_large_size"
+      ],
+      "error": null,
+      "completion": "```python\ndef minTime(nums, n):\n    \"\"\"\n    Calculates the minimum total completion time required.\n    The completion time for a processor is the sum of the processing times of the assigned segment.\n    Since processors work in parallel, the total time is determined by the maximum segment sum.\n    \n    Approach:\n    1. Sort the array in ascending order.\n    2. Iterate through the sorted array, maintaining a running sum of the current segment.\n    3. Track the maximum running sum encountered.\n    4. Return the maximum sum.\n    \"\"\"\n    if not nums:\n        return 0\n    \n    # Sort the array to process segments in order\n    nums.sort()\n    \n    max_completion_time = 0\n    \n    current_sum = 0\n    for num in nums:\n        current_sum += num\n        max_completion_time = max(max_completion_time, current_sum)\n        if current_sum > 0:\n            current_sum -= num\n    \n    return max_completion_time\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_5466_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.3333333333333333,
+      "failed": [
+        "matches_reachability",
+        "single_element",
+        "all_positive",
+        "big_first_jump",
+        "test_can_jump_reachable",
+        "test_can_jump_single_element",
+        "test_can_jump_large_jump",
+        "test_can_jump_no_need_to_jump",
+        "test_can_jump_end_of_array_reachable_with_exact_jump"
+      ],
+      "error": null,
+      "completion": "```python\ndef can_jump(nums):\n    \"\"\"\n    Determines if it's possible to reach the last index starting from index 0.\n    \n    From index i, you can jump to any index j such that i <= j <= i + nums[i].\n    Returns True if a valid path exists, False otherwise.\n    \"\"\"\n    n = len(nums)\n    \n    # Track the furthest index we can reach from the current position\n    furthest = 0\n    \n    for i in range(n):\n        # If we can reach the end, we can also reach any index >= furthest\n        if i >= furthest:\n            furthest = i + 1\n            \n        # If we can reach the current index, update furthest\n        if i < furthest:\n            furthest = i + 1\n            \n    return furthest == n - 1\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_7056_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "first_occurrence_order",
+        "distinct_unchanged",
+        "degenerate_inputs",
+        "test_remove_duplicates_in_sentence",
+        "test_remove_duplicates_all_unique",
+        "test_remove_duplicates_all_duplicates",
+        "test_remove_duplicates_some_duplicates"
+      ],
+      "error": null,
+      "completion": "```python\ndef removeDuplicates(s: str) -> str:\n    \"\"\"\n    Removes all duplicate words from the input string.\n    Returns the sentence with only the first occurrence of each word kept.\n    \"\"\"\n    result = []\n    current_word = \"\"\n    \n    for char in s:\n        if char.isspace():\n            # If we are currently processing a word, append it to the result\n            if current_word:\n                result.append(current_word)\n            current_word = \"\"\n        else:\n            current_word += char\n    \n    # Append the last word if it was processed\n    if current_word:\n        result.append(current_word)\n    \n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_2104_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef highest_possible_power(n, powers):\n    \"\"\"\n    Calculates the maximum possible power level a wizard can have.\n    \n    The maximum power level is achieved when a wizard receives the maximum \n    possible sum of donations from all other wizards.\n    Since each wizard can receive donations from multiple wizards, the total \n    power of a wizard is the sum of their original power + sum of donations.\n    To maximize this, we should sum up all other wizards' powers.\n    \n    Time Complexity: O(n)\n    Space Complexity: O(1)\n    \"\"\"\n    # Initialize the maximum power to the smallest possible value (0)\n    max_power = 0\n    \n    # Iterate through each wizard's initial power\n    for p in powers:\n        # Add the current wizard's power to the maximum power\n        max_power += p\n        \n    return max_power\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_3774_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "matches_definition",
+        "distinct_gives_zero",
+        "repeated_counts_once",
+        "doubling",
+        "test_with_no_duplicates",
+        "test_with_all_duplicates",
+        "test_with_some_duplicates",
+        "test_with_multiple_duplicates",
+        "test_with_single_timestamp",
+        "test_with_large_input"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_duplicate_timestamps(timestamps):\n    \"\"\"\n    Counts the number of timestamps that appear more than once.\n    \n    Args:\n        timestamps (list of str): List of timestamps in HH:MM format.\n        \n    Returns:\n        int: Number of timestamps that appear more than once.\n    \"\"\"\n    # Dictionary to store the first occurrence of each timestamp\n    seen = {}\n    count = 0\n    \n    for timestamp in timestamps:\n        # Convert HH:MM to integer for easier comparison\n        # Format is \"HH:MM\", so we parse it to int\n        key = int(timestamp.split(':')[0]) * 60 + int(timestamp.split(':')[1])\n        \n        if key not in seen:\n            seen[key] = 1\n            count += 1\n        else:\n            count += 1\n    \n    return count\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_7064_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_steps",
+        "positions",
+        "test_rotate_by_2",
+        "test_rotate_more_than_length",
+        "test_rotate_with_negative_numbers"
+      ],
+      "error": null,
+      "completion": "```python\ndef rotate_array(arr, k):\n    \"\"\"\n    Rotates the array to the right by k steps.\n    \n    Args:\n        arr (list): List of integers.\n        k (int): Number of steps to rotate right.\n    \n    Returns:\n        list: New list with elements rotated right by k.\n    \"\"\"\n    # Handle edge case where k is 0 (no rotation needed)\n    if k == 0:\n        return arr\n    \n    # Calculate the number of elements in the array\n    n = len(arr)\n    \n    # Calculate the new position of the last element (index n-1)\n    # After k rotations, the element at index (n-1) moves to index 0\n    # So the new first element is arr[n-1]\n    new_first = arr[n - 1]\n    \n    # Create a new list to store the rotated elements\n    rotated = []\n    \n    # Copy the remaining elements in order\n    for i in range(n - 1):\n        rotated.append(arr[i])\n    \n    # Append the last element\n    rotated.append(new_first)\n    \n    return rotated\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_8627_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "one_result_per_count",
+        "matches_simulation",
+        "add_updates",
+        "delete_behaviour",
+        "inclusive_bounds",
+        "test_sample_input",
+        "test_add_and_delete",
+        "test_add_and_update",
+        "test_multiple_count_queries",
+        "test_no_participants"
+      ],
+      "error": null,
+      "completion": "```python\ndef manage_participants(queries):\n    \"\"\"\n    Manages a list of unique participants with their scores.\n    Supports: Add, Delete, and Count min_score max_score.\n    \"\"\"\n    # Dictionary to store participant info: {name: (score, index)}\n    # We use a list to store the data and an index to track position for efficient deletion\n    participants = {}\n    \n    for query in queries:\n        if query == \"Add\":\n            name, score = query.split()\n            if name in participants:\n                participants[name] = (participants[name][1], participants[name][2] + 1)\n            else:\n                participants[name] = (score, len(participants))\n        elif query == \"Delete\":\n            name = query.split()[-1]\n            if name in participants:\n                del participants[name]\n        elif query == \"Count\":\n            min_score, max_score = query.split()\n            count = 0\n            for name, (score, _) in participants.items():\n                if min_score <= score <= max_score:\n                    count += 1\n            return count\n        else:\n            # Ignore other queries\n            pass\n\n    return []\n```\n"
+    }
+  ],
+  "seconds": 160.5
+}

@@ -1,0 +1,522 @@
+{
+  "model": "models/Qwen3.5-0.8B",
+  "adapter": "runs/full/tests/final",
+  "split": "test",
+  "n_problems": 33,
+  "n_completions": 33,
+  "spec_pass_rate": 0.18181818181818182,
+  "test_pass_rate": 0.21212121212121213,
+  "mean_property_score": 0.4472222222222222,
+  "subtly_wrong_rate": 0.030303030303030304,
+  "records": [
+    {
+      "id": "kodcode/Apps_10371_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_eccentricity",
+        "isolated_start",
+        "path_from_end",
+        "other_components_ignored",
+        "order_invariant",
+        "star",
+        "test_sample_case",
+        "test_single_street",
+        "test_all_neighborhoods_connected",
+        "test_no_reachable_neighborhoods"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_infection_time(N, M, streets, S):\n    visited = [False] * (N + 1)\n    visited[S] = True\n    minutes = 0\n    \n    for _ in range(M):\n        u, v = streets[_]\n        if not visited[u] and not visited[v]:\n            visited[u] = True\n            visited[v] = True\n            minutes += 1\n    \n    return minutes\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_11538_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "matches_brute_force",
+        "progressions_accepted",
+        "pairs_accepted",
+        "test_arithmetic_progression_possible",
+        "test_arithmetic_progression_not_possible",
+        "test_edge_cases"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef can_form_arithmetic_progression(nums: List[int]) -> bool:\n    if len(nums) < 2:\n        return False\n    for i in range(len(nums) - 1):\n        if nums[i+1] - nums[i] != nums[i]:\n            return False\n    return True\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_13951_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6666666666666666,
+      "failed": [
+        "matches_definition",
+        "all_land",
+        "test_num_islands_example_1"
+      ],
+      "error": null,
+      "completion": "```python\ndef num_islands(grid):\n    if not grid or not grid[0]:\n        return 0\n    \n    island_count = 0\n    for row in grid:\n        if not row:\n            continue\n        for cell in row:\n            if cell == '1':\n                island_count += 1\n    return island_count\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_14430_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_definition",
+        "bounds",
+        "symmetric",
+        "zero_iff_equal",
+        "single_edit",
+        "empty_string",
+        "test_example_case",
+        "test_same_strings",
+        "test_only_insertions",
+        "test_replacement",
+        "test_empty_s1",
+        "test_both_empty"
+      ],
+      "error": null,
+      "completion": "```python\ndef min_operations(s1: str, s2: str) -> int:\n    if len(s1) != len(s2):\n        return len(s1) - len(s2)\n    \n    dp = [0] * len(s2)\n    for i in range(len(s2)):\n        dp[i] = 0\n    \n    for i in range(len(s1)):\n        for j in range(len(s2)):\n            if s1[i] == s2[j]:\n                dp[i] = min(dp[i], dp[j] + 1)\n            else:\n                dp[i] = dp[j] + 1\n    \n    return dp[-1]\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_15172_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.625,
+      "failed": [
+        "quadruplets_sorted",
+        "no_duplicates",
+        "ordered",
+        "test_example_1",
+        "test_example_2",
+        "test_repeated_elements"
+      ],
+      "error": null,
+      "completion": "```python\ndef four_sum(nums, target):\n    n = len(nums)\n    if n < 4:\n        return []\n    \n    result = []\n    \n    for i in range(n - 3):\n        for j in range(i + 1, n - 2):\n            for k in range(j + 1, n - 1):\n                for m in range(k + 1, n):\n                    if nums[i] + nums[j] + nums[k] + nums[m] == target:\n                        result.append([nums[i], nums[j], nums[k], nums[m]])\n    \n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_17182_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "matches_definition",
+        "all_prime",
+        "composites_excluded",
+        "test_filter_primes_with_mixed_numbers",
+        "test_filter_primes_with_no_primes",
+        "test_filter_primes_with_all_primes",
+        "test_filter_primes_with_single_element"
+      ],
+      "error": null,
+      "completion": "```python\ndef filter_primes(numbers):\n    result = []\n    for num in numbers:\n        if num > 1 and all(num % i == 0 for i in range(2, int(num**0.5) + 1)):\n            result.append(num)\n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_2934_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef increment_array(arr):\n    return [x + 1 for x in arr]\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_3594_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "count_line",
+        "line_count",
+        "senders_sorted",
+        "sections_hold_right_orders",
+        "receivers_sorted_stable",
+        "degenerate",
+        "test_group_and_sort_orders_sample",
+        "test_group_and_sort_orders_single_order",
+        "test_group_and_sort_orders_multiple_senders",
+        "test_group_and_sort_orders_same_receiver",
+        "test_group_and_sort_orders_empty"
+      ],
+      "error": null,
+      "completion": "```python\ndef group_and_sort_orders(n, orders):\n    senders = {}\n    for i, order in enumerate(orders):\n        sender = order.split(':')[0]\n        if sender not in senders:\n            senders[sender] = []\n        senders[sender].append(orders[i])\n    \n    result = []\n    for sender in sorted(senders.keys()):\n        orders = senders[sender]\n        for order in orders:\n            receiver, items = order.split(':')\n            items_str = ' '.join(items)\n            result.append(f\"{sender}\\n{receiver}\\n{items_str}\")\n    \n    return len(senders) + '\\n' + '\\n'.join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_3781_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [],
+      "error": "timed out",
+      "completion": "```python\ndef days_to_reach_max_height(T, test_cases):\n    results = []\n    for tc in test_cases:\n        H, G, L = tc\n        if H >= L:\n            results.append(0)\n        else:\n            day = 0\n            while H < L:\n                H += G\n                day += 1\n            results.append(day)\n    return results\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_6096_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef max_units_sold_over_k_days(n, sales, k):\n    max_sum = 0\n    for i in range(n - k + 1):\n        current_sum = sum(sales[i:i+k])\n        max_sum = max(max_sum, current_sum)\n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_7099_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "shortest_length",
+        "attained_and_minimal",
+        "shortest_last",
+        "single_word",
+        "test_find_shortest_word_length_normal_sentence",
+        "test_find_shortest_word_length_single_character_words",
+        "test_find_shortest_word_length_multiple_short_words",
+        "test_find_shortest_word_length_all_same_length",
+        "test_find_shortest_word_length_mixed_length_words"
+      ],
+      "error": null,
+      "completion": "```python\ndef find_shortest_word_length(s: str) -> int:\n    if not s:\n        return 0\n    return len(min(s.split(), []))\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_7973_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "matches_reduction_oracle",
+        "balanced_is_true",
+        "other_chars_ignored",
+        "test_balanced_expression",
+        "test_balanced_expression_with_nested_brackets",
+        "test_single_type_balanced",
+        "test_complex_balanced_expression",
+        "test_long_unbalanced_expression"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_balanced(expression: str) -> bool:\n    stack = []\n    for char in expression:\n        if char in \"([\":\n            stack.append(char)\n        elif char in \")]}\":\n            if not stack or stack[-1] != char:\n                return False\n            stack.pop()\n    return len(stack) == 0\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_8549_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_enumeration",
+        "extends_in_two_ways",
+        "positive_int",
+        "base_cases",
+        "test_count_valid_sequences_single",
+        "test_count_valid_sequences_double",
+        "test_count_valid_sequences_triple",
+        "test_count_valid_sequences_four",
+        "test_count_valid_sequences_large"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_valid_sequences(N):\n    if N <= 0:\n        return 0\n    return N * (N - 1)\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_9026_I",
+      "spec_passed": false,
+      "tests_passed": true,
+      "property_score": 0.8,
+      "failed": [
+        "matches_brute_force"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_palindromic_substrings(s: str) -> int:\n    count = 0\n    n = len(s)\n    for i in range(n):\n        for j in range(i, n):\n            if s[i] == s[j]:\n                count += 1\n    return count\n```\n"
+    },
+    {
+      "id": "kodcode/Apps_9307_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef process_registrations(T, registrations):\n    result = []\n    for n, k in registrations:\n        groups = n // k\n        leftover = n % k\n        result.append((groups, leftover))\n    return result\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12355_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "is_achievable",
+        "full_window_is_total",
+        "unit_window_is_max",
+        "test_max_sum_k_consecutive_all_negative"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_sum_k_consecutive(arr, k):\n    n = len(arr)\n    if n == 0:\n        return 0\n    if k < 1 or k > n:\n        return 0\n    max_sum = 0\n    for i in range(n - k + 1):\n        current_sum = sum(arr[i:i+k])\n        max_sum = max(max_sum, current_sum)\n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_12471_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "matches_definition",
+        "disguised_palindrome_true",
+        "case_and_punctuation_ignored",
+        "no_alnum_true",
+        "test_palindromes_with_mixed_characters"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_palindrome(s: str) -> bool:\n    s = s.lower()\n    s = s.replace(\" \", \"\")\n    return s == s[::-1]\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_15256_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef min_operations_to_equalize(arr):\n    n = len(arr)\n    if n == 0:\n        return 0\n    target = arr[0]\n    operations = 0\n    for i in range(1, n):\n        if arr[i] != target:\n            operations += abs(arr[i] - target)\n    return operations\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_17814_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.5,
+      "failed": [
+        "matches_definition",
+        "length_is_achievable",
+        "reverse_invariant",
+        "test_length_of_longest_substring"
+      ],
+      "error": null,
+      "completion": "```python\ndef length_of_longest_substring(s: str) -> int:\n    if not s:\n        return 0\n    last_seen = {}\n    longest = 0\n    current = 0\n    for i, char in enumerate(s):\n        if char in last_seen and last_seen[char] <= current:\n            current = last_seen[char] + 1\n        else:\n            last_seen[char] = i\n            current = i + 1\n        longest = max(longest, current)\n    return longest\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_18668_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "matches_definition",
+        "achieved_by_pair",
+        "is_upper_bound",
+        "tiny_inputs",
+        "test_max_area_example",
+        "test_max_area_two_buildings",
+        "test_max_area_all_same_height",
+        "test_max_area_increasing_heights",
+        "test_max_area_decreasing_heights"
+      ],
+      "error": null,
+      "completion": "```python\ndef max_area(heights):\n    if not heights:\n        return 0\n    max_area = 0\n    left = 0\n    right = len(heights) - 1\n    \n    for i in range(len(heights)):\n        current_height = heights[i]\n        while left <= right:\n            if heights[left] <= current_height:\n                left += 1\n            else:\n                right -= 1\n        max_area = max(max_area, current_height * (right - left + 1))\n    \n    return max_area\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_19703_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_definition",
+        "reverse_invariant",
+        "monotone_traps_nothing",
+        "single_basin",
+        "degenerate_cases",
+        "test_trap_example_case",
+        "test_trap_no_water",
+        "test_trap_single_pit",
+        "test_trap_complex_case",
+        "test_trap_large_values",
+        "test_trap_multiple_valleys"
+      ],
+      "error": null,
+      "completion": "```python\ndef trap(height):\n    if not height:\n        return 0\n    n = len(height)\n    left = 0\n    right = n - 1\n    water = 0\n    while left < right:\n        h1 = height[left]\n        h2 = height[right]\n        if h1 <= h2:\n            water = h1\n            left += 1\n        else:\n            water = h2\n            right -= 1\n    return water\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_23131_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef can_make_bouquets(flowers, k, m):\n    if len(flowers) < m * k:\n        return False\n    count = 0\n    for day in range(len(flowers)):\n        if count + k <= len(flowers):\n            count += 1\n        else:\n            break\n    return count >= m\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_23322_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "balanced_is_valid",
+        "matches_definition",
+        "test_valid_expressions",
+        "test_miscellaneous_cases"
+      ],
+      "error": null,
+      "completion": "```python\ndef is_valid_expression(expression: str) -> bool:\n    stack = []\n    for char in expression:\n        if char in \"({[]}\":\n            stack.append(char)\n        elif char in \")}]\":\n            if not stack:\n                return False\n            top = stack.pop()\n            if char != top:\n                return False\n    return len(stack) == 0\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_24787_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "is_permutation_or_empty",
+        "respects_distance",
+        "empty_iff_impossible",
+        "k_one_always_possible",
+        "repeated_letter",
+        "test_impossible_rearrangement",
+        "test_possible_rearrangement",
+        "test_single_character_string"
+      ],
+      "error": null,
+      "completion": "```python\ndef rearrange_string(s, k):\n    if k <= 0:\n        return s\n    if len(s) == 0:\n        return \"\"\n    \n    result = []\n    for char in s:\n        if len(result) < k:\n            result.append(char)\n        else:\n            break\n    \n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_2585_I",
+      "spec_passed": true,
+      "tests_passed": true,
+      "property_score": 1.0,
+      "failed": [],
+      "error": null,
+      "completion": "```python\ndef remove_duplicates(s):\n    result = []\n    for char in s:\n        if char not in result:\n            result.append(char)\n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_3517_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.4,
+      "failed": [
+        "matches_brute_force",
+        "rising",
+        "order_matters",
+        "test_max_profit_basic_case",
+        "test_max_profit_fluctuating_prices"
+      ],
+      "error": null,
+      "completion": "```python\nfrom typing import List\n\ndef maxProfit(prices: List[int]) -> int:\n    if not prices or len(prices) < 2:\n        return 0\n    max_profit = 0\n    for i in range(1, len(prices)):\n        profit = prices[i] - prices[i - 1]\n        max_profit = max(max_profit, profit)\n    return max_profit\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_42949_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "is_optimal",
+        "enough_processors",
+        "test_minTime_equal_processors",
+        "test_minTime_diverse",
+        "test_minTime_large_size",
+        "test_minTime_varied_values"
+      ],
+      "error": null,
+      "completion": "```python\ndef minTime(nums, n):\n    if n == 0:\n        return 0\n    max_sum = 0\n    for i in range(len(nums)):\n        max_sum = max(max_sum, sum(nums[i:]))\n    return max_sum\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_5466_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.3333333333333333,
+      "failed": [
+        "matches_reachability",
+        "single_element",
+        "blocking_zero",
+        "big_first_jump",
+        "test_can_jump_not_reachable",
+        "test_can_jump_single_element"
+      ],
+      "error": null,
+      "completion": "```python\ndef can_jump(nums):\n    n = len(nums)\n    for i in range(n):\n        if i + nums[i] >= n:\n            return True\n    return False\n```\n"
+    },
+    {
+      "id": "kodcode/Leetcode_7056_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.2,
+      "failed": [
+        "first_occurrence_order",
+        "normalized_spacing",
+        "distinct_unchanged",
+        "degenerate_inputs",
+        "test_remove_duplicates_in_sentence",
+        "test_remove_duplicates_all_unique",
+        "test_remove_duplicates_all_duplicates",
+        "test_remove_duplicates_some_duplicates"
+      ],
+      "error": null,
+      "completion": "```python\ndef removeDuplicates(s: str) -> str:\n    result = []\n    for word in s:\n        if word not in result:\n            result.append(word)\n    return \"\".join(result)\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_2104_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_definition",
+        "adding_wizard_adds_power",
+        "test_example_1",
+        "test_example_2",
+        "test_example_3",
+        "test_all_equal",
+        "test_large_numbers"
+      ],
+      "error": null,
+      "completion": "```python\ndef highest_possible_power(n, powers):\n    max_power = 0\n    for p in powers:\n        max_power = max(max_power, p)\n    return max_power\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_3774_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.0,
+      "failed": [
+        "matches_definition",
+        "distinct_gives_zero",
+        "repeated_counts_once",
+        "order_invariant",
+        "doubling",
+        "test_with_no_duplicates",
+        "test_with_all_duplicates",
+        "test_with_some_duplicates",
+        "test_with_multiple_duplicates",
+        "test_with_single_timestamp",
+        "test_with_large_input"
+      ],
+      "error": null,
+      "completion": "```python\ndef count_duplicate_timestamps(timestamps):\n    count = 0\n    for t in timestamps:\n        if t not in count:\n            count += 1\n    return count\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_7064_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.6,
+      "failed": [
+        "matches_steps",
+        "positions",
+        "test_rotate_by_2",
+        "test_rotate_more_than_length",
+        "test_rotate_with_negative_numbers"
+      ],
+      "error": null,
+      "completion": "```python\ndef rotate_array(arr, k):\n    n = len(arr)\n    if k == 0:\n        return arr\n    arr = arr[:n - k] + arr[n - k:]\n    return arr\n```\n"
+    },
+    {
+      "id": "kodcode/Taco_8627_I",
+      "spec_passed": false,
+      "tests_passed": false,
+      "property_score": 0.16666666666666666,
+      "failed": [
+        "one_result_per_count",
+        "matches_simulation",
+        "add_updates",
+        "delete_behaviour",
+        "inclusive_bounds",
+        "test_sample_input",
+        "test_add_and_delete",
+        "test_add_and_update",
+        "test_multiple_count_queries",
+        "test_no_participants"
+      ],
+      "error": null,
+      "completion": "```python\ndef manage_participants(queries):\n    participants = []\n    for query in queries:\n        if query == \"Add\":\n            name, score = query.split()\n            participants.append((name, score))\n        elif query == \"Delete\":\n            name = query.split()[0]\n            if name in participants:\n                participants.remove(name)\n        elif query == \"Count\":\n            min_score, max_score = int(query.split()[0]), int(query.split()[1])\n            count = sum(1 for name, score in participants if min_score <= score <= max_score)\n            return count\n    return []\n```\n"
+    }
+  ],
+  "seconds": 110.3
+}
